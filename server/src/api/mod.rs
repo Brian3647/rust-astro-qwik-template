@@ -2,7 +2,7 @@ use snowboard::{response, Request, Response, Url};
 
 use crate::info;
 
-pub fn handle(request: &Request, url: Url) -> Response {
+pub async fn handle(request: &Request, url: &Url<'_>) -> Response {
 	info!("Got API request {:#?}", request);
 
 	// do your magic here

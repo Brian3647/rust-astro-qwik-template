@@ -40,14 +40,14 @@ fn main() {
 			process::exit(1);
 		})
 		.with_default_headers()
-		.run(handler)
+		.run_async(handler)
 }
 
-fn handler(request: Request) -> Response {
+async fn handler(request: Request) -> Response {
 	let url = request.parse_url();
 
 	match url.at(0) {
-		Some("api") => api::handle(&request, url),
+		Some("api") => api::handle(&request, &url).await,
 		_ => STATIC_FILES.get_response_or_404(&url.path.join("/")),
 	}
 }

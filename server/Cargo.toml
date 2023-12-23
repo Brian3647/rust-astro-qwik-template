@@ -6,4 +6,4 @@ edition = "2021"
 [dependencies]
 colored = "2.1.0"
 lazy_static = "1.4.0"
-snowboard = "1.0.2"
+snowboard = { version = "1.0.2", features = ["async"] }
