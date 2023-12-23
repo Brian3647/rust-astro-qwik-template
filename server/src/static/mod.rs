@@ -130,10 +130,10 @@ impl StaticFileHandler {
 	/// found. If no fallback is set, returns an empty 404 response. See
 	/// [`Self::get_file`].
 	pub fn get_response_or_404(&self, path: &str) -> Response {
-		if let Some(fallback) = &self.fallback {
-			self.get_response(path).unwrap_or(fallback.to_response())
-		} else {
-			response!(not_found)
-		}
+		self.get_response(path).unwrap_or_else(|| {
+			self.fallback
+				.as_ref()
+				.map_or_else(|| response!(not_found), |file| file.to_response())
+		})
 	}
 }
