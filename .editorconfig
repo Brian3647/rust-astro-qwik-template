@@ -1,0 +1,13 @@
+[*]
+insert_final_newline = true
+line_length = 80
+indent_size = 4
+charset = utf-8
+trim_trailing_whitespace = true
+
+[*.yml] # YAML files should allow tabs, but they don't.
+indent_style = space
+
+[*.{js,ts,jsx,tsx,rs,json,astro}] # Code should use tabs.
+indent_style = tab
+tab_width = 4
